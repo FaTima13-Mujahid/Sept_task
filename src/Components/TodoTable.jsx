@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const TodoTable = () => {
-  const [TodoInfo, setTodoInfo] = useState([]); // State for all to-dos
+  const [TodoInfo, setTodoInfo] = useState([]); // State  all to-dos
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
   const [selectedTodo, setSelectedTodo] = useState(null); // State to store the selected to-do for update
 
