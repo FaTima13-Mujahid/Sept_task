@@ -4,12 +4,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const TodoTable = () => {
-  const [TodoInfo, setTodoInfo] = useState([]); // State  all to-dos
+  const [TodoInfo, setTodoInfo] = useState([]);
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
   const [selectedTodo, setSelectedTodo] = useState(null); // State to store the selected to-do for update
 
   const [updatedTodoName, setUpdatedTodoName] = useState(""); // State for updated to-do name
-  const [updatedTodoDesc, setUpdatedTodoDesc] = useState(""); // State for updated description
+  const [updatedTodoDesc, setUpdatedTodoDesc] = useState(""); // State for updated desc
+
   const [updatedTodoDate, setUpdatedTodoDate] = useState(""); // State for updated date
   const [updatedTodoGenre, setUpdatedTodoGenre] = useState(""); // State for updated genre
   const [updatedTodoStatus, setUpdatedTodoStatus] = useState(""); // State for updated status
@@ -91,11 +92,11 @@ const TodoTable = () => {
   };
 
   // Close Modal
-  const handleClose = () => setShowModal(false);
+  const handleClose = () => setShowModal(false);  
 
   // Handle form submission for updating
   const handleSubmission = async (e) => {
-    e.preventDefault(); // Prevent form submission from reloading page
+    e.preventDefault(); 
     try {
       const response = await fetch(
         `https://66dff6762fb67ac16f27bba7.mockapi.io/crud/Todo/${selectedTodo.id}`,
@@ -123,7 +124,7 @@ const TodoTable = () => {
           prevTodos.map((todo) =>
             todo.id === selectedTodo.id
               ? {
-                  ...todo,
+                 todo,
                   todo_name: updatedTodoName,
                   todo_description: updatedTodoDesc,
                   todo_date: updatedTodoDate,
@@ -140,7 +141,7 @@ const TodoTable = () => {
   };
 
 
-  const filteredTodos = statusFilter
+  const SortingTodos = statusFilter
     ? TodoInfo.filter((todo) => todo.todo_status === statusFilter)
     : TodoInfo;
 
@@ -150,7 +151,7 @@ const TodoTable = () => {
       <div className="mb-3 text-end">
         <select
           id="statusFilter"
-          className="form-select d-inline-block w-auto" // Add d-inline-block and w-auto to keep it inline and auto width
+          className="form-select d-inline-block w-auto" 
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -193,7 +194,7 @@ const TodoTable = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredTodos.map((data, index) => (
+            {SortingTodos.map((data, index) => (
               <tr key={index}>
                 <th scope="row">{index + 1}</th>
                 <td>{data.todo_name}</td>
